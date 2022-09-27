@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'binding/home_binding.dart';
 import 'binding/login_binding.dart';
@@ -9,7 +10,11 @@ import 'login/ui/login.dart';
 import 'login/ui/register.dart';
 import 'middleware/auth_middleware.dart';
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await GetStorage.init();
   runApp(const MyApp());
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../shareWidget/product_item.dart';
 import '../controller/home_controller.dart';
 
 class AllProducts extends GetView<HomeController> {
@@ -8,15 +9,15 @@ class AllProducts extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: controller.allProductsModel?.products?.length,
-        itemBuilder: (context, pos) {
-          return Card(
-            elevation: 4,
-            child: Column(children: [
-              Image.network(controller.allProductsModel?.products?[pos].productOptions.)
-            ]),
-          );
-        });
+    return GetBuilder<HomeController>(builder: (logic) {
+      return logic.allProductsModel==null?Center(child: CircularProgressIndicator(),): ListView.builder(
+          itemCount: logic.allProductsModel?.products?.length,
+          itemBuilder: (context, pos) {
+            return SizedBox(height: 200,
+              child: ProdectItem(
+                  product: logic.allProductsModel!.products![pos]),
+            );
+          });
+    });
   }
 }

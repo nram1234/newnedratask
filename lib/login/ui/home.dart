@@ -14,7 +14,10 @@ class Home extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(centerTitle: true, title: Text("Home")),
         body: //ListView.builder(itemBuilder: itemBuilder),
-        PageView(onPageChanged: logic.chingePage,children: logic.screens)
+       // PageView(onPageChanged: logic.chingePage,children: logic.screens,controller:logic.pageController )
+
+
+        logic.screens[logic.index]
         ,
         bottomNavigationBar: BottomNavigationBar(onTap: logic.chingePage,
           selectedItemColor: ColorApp.primaryColor,

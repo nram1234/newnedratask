@@ -3,6 +3,7 @@
 import 'package:newnedratask/rep/abstract_json_resource.dart';
 
 import 'add_product_model.dart';
+import 'all-products.dart';
 
 class LogInModel extends AbstractJsonResource{
   User? user;
@@ -36,7 +37,7 @@ class User {
   String? fullName;
   String? email;
   String? password;
-  List<Product>? products;
+  List<Products>? products;
   String? createdAt;
   String? updatedAt;
   int? iV;
@@ -57,9 +58,9 @@ class User {
     email = json['email'];
     password = json['password'];
     if (json['products'] != null) {
-      products = <Product>[];
+      products = <Products>[];
       json['products'].forEach((v) {
-        products!.add(new Product.fromJson(v));
+        products!.add(new Products.fromJson(v));
       });
     }
     createdAt = json['createdAt'];

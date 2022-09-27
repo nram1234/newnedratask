@@ -8,7 +8,7 @@ class SecureStorage {
 
  static Future? writeSecureData({required String key,required String value})  async {
 
-
+print("i save the $key==  $value ");
     var writeData = await box.write( key,value);
     return writeData;
   }

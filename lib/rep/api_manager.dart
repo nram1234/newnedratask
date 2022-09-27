@@ -21,12 +21,12 @@ abstract class ApiManager {
     await dioSingleton.dio
         .get( apiUrl()  ,queryParameters: data )
         .then((value) {
-          print(value.data["Status"]);
-      if(value.data["Status"]!=200){
-
+          print(value.statusCode);
+      if(value.statusCode!=200){
+print("value.data !=200");
       }else{
 
-
+        print("value.data ========200");
         data = value.data;
         json = fromJson(data);
       }
