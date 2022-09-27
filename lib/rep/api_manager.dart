@@ -42,16 +42,16 @@ print("value.data !=200");
     AbstractJsonResource? jsonList;
     var data;
 
-    Options options = Options(headers: {
-      "Accept": "application/json",
-      'Content-Type': 'application/json',
-    },);
+    // Options options = Options(headers: {
+    //   "Accept": "application/json",
+    //   'Content-Type': 'application/json',
+    // },);
     print(dataToPost);
     await dioSingleton.dio
         .post(
         apiUrl(),
         data:  dataToPost,
-        options: options
+      //  options: options
       // Options(
       //     followRedirects: false,
       //     validateStatus: (status) {

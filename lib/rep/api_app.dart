@@ -8,6 +8,7 @@ class APIApp {
   static const String registerUrl =baseUrl+"register-user";
   static const String allProductsUrl =baseUrl+"get-all-products";
   static const String getUserInfoUrl =baseUrl+"get-user-info";
+  static const String addproductUrl =baseUrl+"add-product";
 
 
 

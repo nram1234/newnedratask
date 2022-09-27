@@ -1,6 +1,8 @@
+import 'package:newnedratask/rep/abstract_json_resource.dart';
+
 import 'all-products.dart';
 
-class AddProductModel {
+class AddProductModel extends AbstractJsonResource{
   Products? product;
   String? message;
   int? status;
