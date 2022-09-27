@@ -6,8 +6,9 @@ import 'package:get/get.dart';
 import '../../uit/app_colors.dart';
 import '../../shareWidget/custom_button.dart';
 import '../controller/login_controller.dart';
+import '../controller/register_controller.dart';
 
-class Login extends GetView<LogingController> {
+class Register extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -20,9 +21,23 @@ class Login extends GetView<LogingController> {
           child: Column(children: [
             Expanded(flex: 4, child: Row(
               children: [
-                Expanded(child: Text("LogIn",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),)),
+                Expanded(child: Text("Register",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),)),
               ],
             )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(validator: controller.nameValidator,controller:controller.name,
+                decoration: InputDecoration(
+                  hintText: "name",
+                  errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  focusedBorder:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                  enabledBorder:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(validator: controller.nameValidator,controller:controller.email,
@@ -63,22 +78,6 @@ class Login extends GetView<LogingController> {
                     onClick: controller.logIng,
                   );
                 }),
-            InkWell(
-              onTap: () {
-                Get.toNamed(
-                  "/Register",
-                );
-              },
-              child: Center(
-                child: Text(
-                  "signUp",
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      decoration: TextDecoration.underline),
-                ),
-              ),
-            ),
             Expanded(flex: 2, child: SizedBox())
           ]),
         ),

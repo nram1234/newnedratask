@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../all_string_const.dart';
-import '../storage.dart';
+import '../uit/all_string_const.dart';
+import '../uit/storage.dart';
 
 
 class AuthMiddleWare extends GetMiddleware {

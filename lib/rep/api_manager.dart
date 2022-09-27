@@ -22,7 +22,7 @@ abstract class ApiManager {
         .get( apiUrl()  ,queryParameters: data )
         .then((value) {
           print(value.data["Status"]);
-      if(value.data["Status"]==false){
+      if(value.data["Status"]!=200){
 
       }else{
 

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'binding/home_binding.dart';
+import 'binding/login_binding.dart';
+import 'binding/register_binding.dart';
+import 'login/ui/home.dart';
 import 'login/ui/login.dart';
+import 'login/ui/register.dart';
 import 'middleware/auth_middleware.dart';
 
 void main() {
@@ -27,18 +32,22 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
-      ),
+      ),initialRoute: "Home",
 
       getPages: [
         GetPage(name: "/", page: () =>
-          Login(),bindings: ,
+          Login(),bindings:[LoginBinding()] ,
             middlewares: [
               AuthMiddleWare()
             ]
 
         )
-
-
+,GetPage(name: "/Register", page: () =>
+            Register(),
+            binding: RegisterBinding())
+        ,GetPage(name: "/Home", page: () =>
+            Home(),
+            binding: HomeBinding())
       ],)
     ;
   }
