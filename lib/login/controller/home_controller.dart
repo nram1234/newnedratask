@@ -16,7 +16,7 @@ import '../../uit/storage.dart';
 import '../ui/tap1_all_products.dart';
 import '../ui/tap2_profile.dart';
 import '../ui/tap3_add_product.dart';
-
+import 'package:http/http.dart' as http;
 class HomeController extends GetxController {
   AllProductsModel? allProductsModel;
   UserInfoModel? userInfoModel;
@@ -106,7 +106,7 @@ class HomeController extends GetxController {
   addProductReq({required File file}) async {
     AddProductAPI addProductAPI = AddProductAPI();
     addProductAPI.dioSingleton.dio.options = d.BaseOptions(headers: {
-      'Content-Type': 'application/json',
+    'Content-Type': 'multipart/form-data',
       'Authorization':
           'Bearer ${SecureStorage.readSecureData(AllStringConst.Token)}',
     });
@@ -114,32 +114,81 @@ class HomeController extends GetxController {
     String fileName = file.path.split('/').last;
     addProduct = true;
     update();
-
-    // Map<String, dynamic> a = {};
-    // a['productName'] = prodactName.text;
-    // a['productColors[0][colorName]'] = colorName.text;
-    // a["productColors[0][colorImages]"]  =await d.MultipartFile.fromFile(file.path,
-    //   filename: fileName, contentType:   MediaType('image', 'png'));
-    //
-    // a["productSizes[0]"] = productSizes.text.split(",");
-    // a["productVariations[0][variantPrice]"] = variantPrice.text;
-    // a["productVariations[0][variantAttributes][variantSize]"] =
-    //     variantSize.text.split(",");
-
-    addProductAPI.post({  "mode": "formdata",
+    d.FormData formData = new d.FormData.fromMap({
+      // "mode": "formdata",
+     // "mode": "formdata",
       'productName': prodactName.text,
-     // 'productColors[0][colorName]': p.text,
+      // 'productColors[0][colorName]': p.text,
       'productSizes[0]': productSizes.text.split(","),
       'productVariations[0][variantPrice]': variantPrice.text.split(","),
       'productVariations[0][variantAttributes][variantColor][colorName]': colorName.text,
-      'productVariations[0][variantAttributes][variantSize]': variantSize.text//,
-    // "productColors[0][colorImages]":await d.MultipartFile.fromFile(file.path,
-    // filename: fileName, contentType:   MediaType('image', 'png'))
-    }).then((value) {
+      'productVariations[0][variantAttributes][variantSize]': variantSize.text,
+      "productColors[0][colorImages]":      await d.MultipartFile.fromFile(file.path, filename:fileName)
+      // await d.MultipartFile.fromFile(file.path,
+      //     filename: "fileName"),
+    });
+    Map<String, dynamic> a = {
+      // "mode": "formdata",
+      //"mode": "formdata",
+      'productName': prodactName.text,
+      // 'productColors[0][colorName]': p.text,
+      'productSizes[0]': productSizes.text.split(","),
+      'productVariations[0][variantPrice]': variantPrice.text.split(","),
+      'productVariations[0][variantAttributes][variantColor][colorName]': colorName.text,
+      'productVariations[0][variantAttributes][variantSize]': variantSize.text,
+      "productColors[0][colorImages]":   await d.MultipartFile.fromFile(file.path, filename:fileName),
+    };
+
+print(addProductAPI.apiUrl());
+    addProductAPI.post(a//formData
+    //     {
+    //   // "mode": "formdata",
+    //   "mode": "formdata",
+    //   'productName': prodactName.text,
+    //
+    //   'productSizes[0]': productSizes.text.split(","),
+    //   'productVariations[0][variantPrice]': variantPrice.text.split(","),
+    //   'productVariations[0][variantAttributes][variantColor][colorName]': colorName.text,
+    //   'productVariations[0][variantAttributes][variantSize]': variantSize.text,
+    //   "productColors[0][colorImages]": await d.MultipartFile.fromFile(file.path,
+    //       filename: "fileName",  ),
+    // }
+    ).then((value) {
       addProduct = false;
       update();
 
       Get.snackbar("", "Add");
     });
   }
+
+
+  //test http
+testHttp()async{
+  var headers = {
+    'Accept': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzMzJkZjA4NTk1NGUzYjM3YTI2MWViNyJ9LCJpYXQiOjE2NjQyNzgyODAsImV4cCI6MTY2Njg3MDI4MH0.utLqzyB6By1X6TZvwbbqZLBfr4lkshWXpmgn_xmo0Co'
+  };
+  var request = http.MultipartRequest('POST', Uri.parse('https://aroundix-flutter-test-backend.herokuapp.com/API/add-product'));
+  request.fields.addAll({
+    'productName': 'newwww',
+    'productColors[0][colorName]': 'black',
+    'productSizes[0]': '[1,2,4]',
+    'productVariations[0][variantPrice]': '[10,20,100]',
+    'productVariations[0][variantAttributes][variantColor][colorName]': 'orang',
+    'productVariations[0][variantAttributes][variantSize]': '15'
+  });
+  print("file!.pathfile!.path=> ${file!.path}");
+  request.files.add(await http.MultipartFile.fromPath('productColors[0][colorImages]', file!.path));
+  request.headers.addAll(headers);
+
+  http.StreamedResponse response = await request.send();
+
+  if (response.statusCode == 200) {
+  print(await response.stream.bytesToString());
+  }
+  else {
+  print(response.reasonPhrase);
+  }
+
+}
 }

@@ -38,7 +38,7 @@ print("value.data !=200");
     return json;
   }
   /// POST DATA TO SERVER
-  Future<AbstractJsonResource?> post(Map dataToPost) async {
+  Future<AbstractJsonResource?> post(  dataToPost) async {
     AbstractJsonResource? jsonList;
     var data;
 
@@ -46,7 +46,7 @@ print("value.data !=200");
     //   "Accept": "application/json",
     //   'Content-Type': 'application/json',
     // },);
-    print(dataToPost);
+    print(dataToPost.toString());
     await dioSingleton.dio
         .post(
         apiUrl(),
