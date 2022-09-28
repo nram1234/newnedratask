@@ -106,41 +106,45 @@ class HomeController extends GetxController {
   addProductReq({required File file}) async {
     AddProductAPI addProductAPI = AddProductAPI();
     addProductAPI.dioSingleton.dio.options = d.BaseOptions(headers: {
-    'Content-Type': 'multipart/form-data',
+      'Content-Type': 'multipart/form-data',
       'Authorization':
           'Bearer ${SecureStorage.readSecureData(AllStringConst.Token)}',
     });
 
     String fileName = file.path.split('/').last;
+
     addProduct = true;
     update();
     d.FormData formData = new d.FormData.fromMap({
-      // "mode": "formdata",
-     // "mode": "formdata",
-      'productName': prodactName.text,
-      // 'productColors[0][colorName]': p.text,
-      'productSizes[0]': productSizes.text.split(","),
-      'productVariations[0][variantPrice]': variantPrice.text.split(","),
-      'productVariations[0][variantAttributes][variantColor][colorName]': colorName.text,
-      'productVariations[0][variantAttributes][variantSize]': variantSize.text,
-      "productColors[0][colorImages]":      await d.MultipartFile.fromFile(file.path, filename:fileName)
-      // await d.MultipartFile.fromFile(file.path,
-      //     filename: "fileName"),
+      "mode": "formdata",
+      'productName':"iiiiiiiii" ,//prodactName.text,
+      'productColors[0][colorName]': "black",
+      'productSizes[0]': [1,2,5],// productSizes.text.split(","),
+      'productVariations[0][variantPrice]': [1,2,5],//variantPrice.text.split(","),
+      'productVariations[0][variantAttributes][variantColor][colorName]': "iiiiiiiii" ,//colorName.text,
+      'productVariations[0][variantAttributes][variantSize]': 15 ,//variantSize.text,
+      'productColors[0][colorImages]':   await d.MultipartFile.fromFile(file.path, filename:fileName),
     });
     Map<String, dynamic> a = {
       // "mode": "formdata",
-      //"mode": "formdata",
-      'productName': prodactName.text,
-      // 'productColors[0][colorName]': p.text,
-      'productSizes[0]': productSizes.text.split(","),
-      'productVariations[0][variantPrice]': variantPrice.text.split(","),
-      'productVariations[0][variantAttributes][variantColor][colorName]': colorName.text,
-      'productVariations[0][variantAttributes][variantSize]': variantSize.text,
-      "productColors[0][colorImages]":   await d.MultipartFile.fromFile(file.path, filename:fileName),
-    };
+     //  "mode": "formdata",
+      'Accept': "*/*",
+      'productName':"iiiiiiiii" ,//prodactName.text,
+       'productColors[0][colorName]': "black",
+      'productSizes[0]': [1,2,5],// productSizes.text.split(","),
+     'productVariations[0][variantPrice]': [1,2,5],//variantPrice.text.split(","),
+      'productVariations[0][variantAttributes][variantColor][colorName]': "iiiiiiiii" ,//colorName.text,
+      'productVariations[0][variantAttributes][variantSize]': 15 ,//variantSize.text,
+      'productColors[0][colorImages]':    await d.MultipartFile.fromFile(file.path, filename:fileName),
 
-print(addProductAPI.apiUrl());
-    addProductAPI.post(a//formData
+
+    };
+    print("0"*20);
+    print(file.path);
+    print(addProductAPI.apiUrl());
+    print(a);
+    print("0"*20);
+    addProductAPI.post(a// formData
     //     {
     //   // "mode": "formdata",
     //   "mode": "formdata",

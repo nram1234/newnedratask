@@ -116,10 +116,10 @@ class Tap3AddProduct extends StatelessWidget {
 
               CustomButton(height: 50,onClick: () {
                 if(logic.file!=null){
-         //  logic.addProductReq(file: logic.file!);
+           logic.addProductReq(file: logic.file!);
 
 
-                 logic.testHttp();
+              //   logic.testHttp();
 
                 }else{
                   Get.snackbar("", "Add all data");
