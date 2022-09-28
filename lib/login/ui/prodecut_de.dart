@@ -8,6 +8,6 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body:  ProdectItem(product: ),);
+    return Scaffold(body:   );
   }
 }

@@ -176,23 +176,21 @@ testHttp()async{
   request.fields.addAll({
     'productName': 'newwww',
     'productColors[0][colorName]': 'black',
-    'productSizes[0]': '[1,2,4]',
-    'productVariations[0][variantPrice]': '[10,20,100]',
+    'productSizes[0]': '[1,55,5]',
+    'productVariations[0][variantPrice]': '"55"',
     'productVariations[0][variantAttributes][variantColor][colorName]': 'orang',
-    'productVariations[0][variantAttributes][variantSize]': '15'
+    'productVariations[0][variantAttributes][variantSize]': '"555"'
   });
-  print("file!.pathfile!.path=> ${file!.path}");
-  request.files.add(await http.MultipartFile.fromPath('productColors[0][colorImages]', file!.path));
+  request.files.add(await http.MultipartFile.fromPath('productColors[0][colorImages]', '/data/user/0/com.example.newnedratask/cache/image_picker5620987007315917525.jpg'));
   request.headers.addAll(headers);
 
   http.StreamedResponse response = await request.send();
 
   if (response.statusCode == 200) {
-  print(await response.stream.bytesToString());
+    print(await response.stream.bytesToString());
   }
   else {
-  print(response.reasonPhrase);
+    print(response.reasonPhrase);
   }
-
 }
 }
