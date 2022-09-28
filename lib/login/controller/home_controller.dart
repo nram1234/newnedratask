@@ -181,7 +181,7 @@ testHttp()async{
     'productVariations[0][variantAttributes][variantColor][colorName]': 'orang',
     'productVariations[0][variantAttributes][variantSize]': '"555"'
   });
-  request.files.add(await http.MultipartFile.fromPath('productColors[0][colorImages]', '/data/user/0/com.example.newnedratask/cache/image_picker5620987007315917525.jpg'));
+  request.files.add(await http.MultipartFile.fromPath('productColors[0][colorImages]', file!.path));
   request.headers.addAll(headers);
 
   http.StreamedResponse response = await request.send();

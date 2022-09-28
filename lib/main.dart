@@ -4,14 +4,15 @@ import 'package:get_storage/get_storage.dart';
 
 import 'binding/home_binding.dart';
 import 'binding/login_binding.dart';
+import 'binding/product_details.dart';
 import 'binding/register_binding.dart';
 import 'login/ui/home.dart';
 import 'login/ui/login.dart';
+import 'login/ui/product_details.dart';
 import 'login/ui/register.dart';
 import 'middleware/auth_middleware.dart';
 
-void main() async{
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await GetStorage.init();
@@ -37,24 +38,28 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
-      ),initialRoute: "/",
-
+      ),
+      initialRoute: "/",
       getPages: [
-        GetPage(name: "/", page: () =>
-          Login(),bindings:[LoginBinding()] ,
-            middlewares: [
-              AuthMiddleWare()
-            ]
+        GetPage(
+            name: "/",
+            page: () => Login(),
+            bindings: [LoginBinding()],
+            middlewares: [AuthMiddleWare()]),
+        GetPage(
+            name: "/Register",
+            page: () => Register(),
+            binding: RegisterBinding()),
+        GetPage(name: "/Home", page: () => Home(), binding: HomeBinding())
 
-        )
-,GetPage(name: "/Register", page: () =>
-            Register(),
-            binding: RegisterBinding())
-        ,GetPage(name: "/Home", page: () =>
-            Home(),
-            binding: HomeBinding())
-      ],)
-    ;
+
+
+
+    ,   GetPage(
+            name: "/ProductDetails",
+            page: () => ProductDetails(),
+            binding: ProductDetailsBinding()),
+      ],
+    );
   }
 }
-

@@ -4,7 +4,7 @@ import '../rep/json_model/add_product_model.dart';
 import '../rep/json_model/all-products.dart';
 
 class ProdectItem extends StatelessWidget {
-  Products product;
+  var product;
 
   ProdectItem({required this.product});
 
