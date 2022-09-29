@@ -27,13 +27,13 @@ class Home extends StatelessWidget {
 
           items: [
             BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.home), label: ""),
+                icon: Icon(CupertinoIcons.home), label: "all Products"),
 
 
             BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.person), label: "")
+                icon: Icon(CupertinoIcons.person), label: "User info")
             , BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.add), label: ""),
+                icon: Icon(CupertinoIcons.add), label: "Add Products"),
           ],),);
     });
   }

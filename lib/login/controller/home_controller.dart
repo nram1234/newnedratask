@@ -94,7 +94,7 @@ class HomeController extends GetxController {
   TextEditingController variantSize = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
-
+// get imge from device
   chossImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -102,7 +102,7 @@ class HomeController extends GetxController {
       update();
     }
   }
-
+//add Product Req with dio
   addProductReq({required File file}) async {
     AddProductAPI addProductAPI = AddProductAPI();
     addProductAPI.dioSingleton.dio.options = d.BaseOptions(headers: {
@@ -166,7 +166,7 @@ class HomeController extends GetxController {
   }
 
 
-  //test http
+  //test http to add prodect
 testHttp()async{
   var headers = {
     'Accept': 'application/json',

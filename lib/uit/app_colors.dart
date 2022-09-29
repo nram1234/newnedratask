@@ -21,6 +21,8 @@ static Color lightGreyColor3=  Color(0xffeceaea);
 
 
 }
+
+//
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");

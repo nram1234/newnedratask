@@ -75,7 +75,7 @@ class Register extends GetView<RegisterController> {
                     title: 'دخول',
                     height: 50,
                     width: size.width * .8,
-                    onClick: controller.logIng,
+                    onClick: controller.  register,
                   );
                 }),
             Expanded(flex: 2, child: SizedBox())

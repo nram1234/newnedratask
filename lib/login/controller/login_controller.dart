@@ -11,14 +11,17 @@ class LogingController extends GetxController{
   final formKey = GlobalKey<FormState>();
 TextEditingController email=TextEditingController();
 TextEditingController password=TextEditingController();
-
+// user send request to login or not
 bool islogin=false;
+// Validator  for name
 String? nameValidator  (value) {
   if (value == null || value.isEmpty) {
   return ' ';
   }
   return null;
   }
+
+  // Validator  for password
   String? passwordValidator  (value) {
     if (value == null || value.isEmpty) {
       return ' ';
@@ -26,7 +29,7 @@ String? nameValidator  (value) {
     return null;
   }
 
-
+//login request
   logIng()async{
   if(formKey.currentState!.validate()){
     islogin=true;

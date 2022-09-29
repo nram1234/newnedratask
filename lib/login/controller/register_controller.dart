@@ -28,11 +28,11 @@ class RegisterController extends GetxController{
   }
 
 
-  logIng()async{
+  register()async{
     if(formKey.currentState!.validate()){
       isRegister=true;
       update();
-      RegisterAPI logInAPI=RegisterAPI();
+      RegisterAPI registerAPI=RegisterAPI();
       Map <String,dynamic>a={};
       a['fullName']  =name.text;
       a['email']  =email.text;
@@ -40,7 +40,7 @@ class RegisterController extends GetxController{
 
 
 
-      logInAPI.post(a).then((value) async{
+      registerAPI.post(a).then((value) async{
 
         RegisterModel data=value as RegisterModel;
 

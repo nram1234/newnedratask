@@ -5,7 +5,7 @@ import '../../rep/json_model/get_product_by_id.dart';
 
 class ProductDetailsController extends GetxController{
   GetProductById? getProductById;
-
+// get Product Details request
 getProductDetails(String id){
 
   GetProductByIdAPI  getProductByIdAPI=GetProductByIdAPI();
