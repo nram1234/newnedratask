@@ -72,7 +72,7 @@ class Register extends GetView<RegisterController> {
                   return logic.islogin?CircularProgressIndicator():CustomButton(buttonColor: ColorApp.primaryColor,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    title: 'دخول',
+                    title: 'login',
                     height: 50,
                     width: size.width * .8,
                     onClick: controller.  register,
